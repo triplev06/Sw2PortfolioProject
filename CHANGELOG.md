@@ -8,6 +8,25 @@ the following form: YYYY.0M.0D.
 
 ## [Unreleased]
 
+## [2025].[10].[08]
+
+### Added
+
+- Designed a proof of concept for vigener cipher component
+
+### Updated
+
+- VigenereCipher.java file
+
+## [2025.09.19]
+
+### Added
+
+- Designed a encryption component
+- Designed a camera component
+- Designed a card shuffler/dealer component
+
+
 ## [2024.12.30]
 
 - Added table-based rubrics to all 6 parts of the project
