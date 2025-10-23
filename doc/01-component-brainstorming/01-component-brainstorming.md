@@ -5,8 +5,6 @@
 - **Due Date**: September 19th, 2025 @ 1:50 pm
 ## Assignment Overview
 
-
-
 The overall goal of the portfolio project is to have you design and implement
 your own OSU component. There are no limits to what you choose to design and
 implement, but your component must fit within the constraints of our software
@@ -27,7 +25,6 @@ detailed feedback, which may help you decide which component to ultimately
 implement.
 
 ## Assignment Checklist
-
 
 
 To be sure you have completed everything on this assignment, we have littered
@@ -117,7 +114,6 @@ To aid you in this process, we have provided [some example components][example-c
 that may help you in your brainstorming. All of these components were made at
 some point by one of your peers, so you should feel confident that you can
 accomplish any of them.
-
 
 
 There is no requirement that you use any of the components listed above.
@@ -249,7 +245,7 @@ will likely refine your design to make your implementation easier to use.
       - I dont know
     - Can you implement your secondary methods using your kernel methods?
       Answer, explain, and give at least one example:
-      - yes as you can also do the display() method as its just displaying on a grid what cells you've discovered. 
+      - yes as you can also do the display() method as its just displaying on a grid what cells you've discovered.
 
 - Component Design #3: deckOfCards
   - **Description**:
