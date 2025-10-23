@@ -17,7 +17,7 @@ the following form: YYYY.0M.0D.
 
 ### Updated
 
-- Changed design to include a kernel interface with its methods and a standard 
+- Changed design to include a kernel interface with its methods and a standard
 
 
 ## [2025].[10].[08]
