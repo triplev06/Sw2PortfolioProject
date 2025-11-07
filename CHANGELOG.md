@@ -8,8 +8,18 @@ the following form: YYYY.0M.0D.
 
 ## [Unreleased]
 
+## [2025.11.06]
 
-## [2025.09.08]
+### Added
+
+- Designed abstract class for abstract component
+
+### Updated
+
+- Changed design to include secondary methods for the abstract component
+
+
+## [2025.10.23]
 
 ### Added
 
