@@ -8,6 +8,18 @@ the following form: YYYY.0M.0D.
 
 ## [Unreleased]
 
+
+## [2025.09.08]
+
+### Added
+
+- Designed kernel and enhanced interfaces for VigenereCipher component
+
+### Updated
+
+- Changed design to include a kernel interface with its methods and a standard
+
+
 ## [2025].[10].[08]
 
 ### Added
