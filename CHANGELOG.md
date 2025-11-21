@@ -8,6 +8,16 @@ the following form: YYYY.0M.0D.
 
 ## [Unreleased]
 
+## [2025.11.20]
+
+### Added
+
+- Designed kernel implemntations (VigenereCipher1L.java)
+
+### Updated
+
+- nothing for now
+
 ## [2025.11.06]
 
 ### Added
