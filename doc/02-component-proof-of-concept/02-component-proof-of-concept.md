@@ -110,6 +110,8 @@ Below is further rationale/explanation for the rubric items above:
 >>> im not certain if I actually have the time to implemenet minesweeper game so I think
 >>> the cipher will be fun and doable in my time constraint now that ive had a couple
 >>> weeks to think about it.
+
+
 > Once you've argued your choice of design, make a branch in your new repo called
 > something like `proof-of-concept`. There are many ways to do this, but my
 > preference is to use GitHub Desktop. From there, you can click the `Branch`
