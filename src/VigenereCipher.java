@@ -1,51 +1,29 @@
-package components.vigenerecipher;
-
-import javax.sound.midi.Sequence;
+import components.sequence.Sequence;
 
 /**
  * Enhanced {@code VigenereCipherKernel} with secondary methods.
  *
  * <p>
  * This interface adds convenience operations such as encrypting/decrypting with
- * a different key, converting between {@code Sequence<Character>} and
- * {@code String}, and checking if the stored key is valid.
+ * a temporary key, converting between {@code Sequence<Character>} and
+ * {@code String}, and validating keys.
  * </p>
  *
  * @author Vikranth Vegesina
- *
- * @mathdefinitions
- *
- *                  <pre>
- * VIGENERE_SHIFT(c: character, k: character): character is
- *   if c is a letter then
- *     shifted character using Vigenere cipher with key character k
- *   else
- *     c
- *
- * TEXT_ENCRYPTED_WITH_KEY(text: string of character, key: string of character): string of character satisfies
- *   |TEXT_ENCRYPTED_WITH_KEY(text, key)| = |text| and
- *   for all i: integer where 0 <= i < |text| and
- *     letter_count is the count of letters in text[0, i)
- *     (TEXT_ENCRYPTED_WITH_KEY(text, key)[i] =
- *       VIGENERE_SHIFT(text[i], key[letter_count mod |key|]))
- *
- * TEXT_DECRYPTED_WITH_KEY(text: string of character, key: string of character): string of character is
- *   the inverse operation of TEXT_ENCRYPTED_WITH_KEY
- *                  </pre>
  */
 public interface VigenereCipher extends VigenereCipherKernel {
 
     /**
-     * Encrypts the given text using the provided key. This method does not
-     * change the stored key.
+     * Encrypts the given text using the provided key without changing the
+     * stored key.
      *
      * @param text
      *            the text to encrypt
      * @param key
      *            the key to use for encryption
      * @return the ciphertext produced
-     * @requires text is not null and key is not null and |key| > 0 and every
-     *           character of key is a letter
+     * @requires text /= null and key /= null and |key| > 0 and every character
+     *           of key is a letter
      * @ensures encryptWithKey = TEXT_ENCRYPTED_WITH_KEY(text,
      *          TO_UPPERCASE(key))
      */
@@ -53,16 +31,16 @@ public interface VigenereCipher extends VigenereCipherKernel {
             Sequence<Character> key);
 
     /**
-     * Decrypts the given ciphertext using the provided key. This method does
-     * not change the stored key.
+     * Decrypts the given ciphertext using the provided key without changing the
+     * stored key.
      *
      * @param text
      *            the ciphertext to decrypt
      * @param key
      *            the key to use for decryption
      * @return the plaintext produced
-     * @requires text is not null and key is not null and |key| > 0 and every
-     *           character of key is a letter
+     * @requires text /= null and key /= null and |key| > 0 and every character
+     *           of key is a letter
      * @ensures decryptWithKey = TEXT_DECRYPTED_WITH_KEY(text,
      *          TO_UPPERCASE(key))
      */
@@ -70,8 +48,8 @@ public interface VigenereCipher extends VigenereCipherKernel {
             Sequence<Character> key);
 
     /**
-     * Checks whether the stored key is valid. A valid key is non-empty and made
-     * up only of letters.
+     * Checks whether the stored key is valid. A valid key is non-empty and
+     * consists only of letters.
      *
      * @return true if the key is valid, false otherwise
      * @ensures isValidKey = (|this.key| > 0 and every element of this.key is a
@@ -80,16 +58,15 @@ public interface VigenereCipher extends VigenereCipherKernel {
     boolean isValidKey();
 
     /**
-     * Sets the key from the given {@code String}. Only letters are allowed.
+     * Sets the key from the given {@code String}.
      *
-     * @param keyStr
+     * @param s
      *            the new key as a string
      * @replaces this.key
-     * @requires keyStr is not null and |keyStr| > 0 and every character of
-     *           keyStr is a letter
-     * @ensures this.key = TO_UPPERCASE(CHAR_SEQUENCE_OF(keyStr))
+     * @requires s /= null and |s| > 0 and every character of s is a letter
+     * @ensures this.key = TO_UPPERCASE(CHAR_SEQUENCE_OF(s))
      */
-    void setKeyFromString(String keyStr);
+    void setKeyFromString(String s);
 
     /**
      * Returns the stored key as a {@code String}.
@@ -105,7 +82,7 @@ public interface VigenereCipher extends VigenereCipherKernel {
      * @param s
      *            the string to convert
      * @return the resulting sequence of characters
-     * @requires s is not null
+     * @requires s /= null
      * @ensures stringToSequence = CHAR_SEQUENCE_OF(s)
      */
     Sequence<Character> stringToSequence(String s);
@@ -116,7 +93,7 @@ public interface VigenereCipher extends VigenereCipherKernel {
      * @param seq
      *            the sequence to convert
      * @return the resulting string
-     * @requires seq is not null
+     * @requires seq /= null
      * @ensures sequenceToString = TO_STRING(seq)
      */
     String sequenceToString(Sequence<Character> seq);

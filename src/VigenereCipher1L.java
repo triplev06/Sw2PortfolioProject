@@ -1,42 +1,105 @@
-package components.vigenerecipher;
-
-// no idea why but vscode auto swaps components.sequence import
-// with javax.sound.midi.Sequence import. Sorry if this causes any issues
-// or messes with other methods I already made. No idea why it does that.
-import javax.sound.midi.Sequence;
-
+import components.sequence.Sequence;
 import components.sequence.Sequence1L;
 
 /**
- * {@code VigenereCipher} kernel implementation represented as a
- * {@code Sequence<Character>}.
+ * {@code VigenereCipher} represented as a {@code Sequence<Character>} with
+ * implementations of primary methods.
  *
  * @author Vikranth Vegesina
- *
- * @convention $this.key is a sequence of uppercase letters
- *
- * @correspondence this = $this.key
+ * @convention <pre>
+ * for all i: integer where (0 <= i and i < |$this.rep|)
+ *   ($this.rep[i] is in ['A'..'Z'])
+ * </pre>
+ * @correspondence <pre>
+ * this.key = $this.rep
+ * </pre>
  */
 public class VigenereCipher1L extends VigenereCipherSecondary {
 
     /*
-     * Private members --------------------------------------------------------
+     * Private members
      */
 
     /**
-     * The encryption/decryption key stored as a sequence of characters.
+     * Representation of {@code this}.
      */
-    private Sequence<Character> key;
+    private Sequence<Character> rep;
+
+    /**
+     * Alphabet used for Vigenere cipher operations.
+     */
+    private static final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     /**
      * Creator of initial representation.
      */
     private void createNewRep() {
-        this.key = new Sequence1L<>();
+        this.rep = new Sequence1L<>();
     }
 
     /*
-     * Constructors -----------------------------------------------------------
+     * Private helper methods
+     */
+
+    /**
+     * Converts a character to uppercase if it is a letter.
+     *
+     * @param c
+     *            the character to convert
+     * @return the uppercase version if letter, otherwise the character itself
+     */
+    private static char toUpperCase(char c) {
+        if (c >= 'a' && c <= 'z') {
+            return (char) (c - 'a' + 'A');
+        }
+        return c;
+    }
+
+    /**
+     * Checks if a character is a letter.
+     *
+     * @param c
+     *            the character to check
+     * @return true if the character is a letter, false otherwise
+     */
+    private static boolean isLetter(char c) {
+        return (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z');
+    }
+
+    /**
+     * Encrypts or decrypts a single character using the Vigenere cipher.
+     *
+     * @param ch
+     *            the character to process
+     * @param keyChar
+     *            the key character to use
+     * @param encrypt
+     *            true to encrypt, false to decrypt
+     * @return the processed character
+     */
+    private static char processChar(char ch, char keyChar, boolean encrypt) {
+        if (!isLetter(ch)) {
+            return ch;
+        }
+
+        char upperCh = toUpperCase(ch);
+        char upperKey = toUpperCase(keyChar);
+
+        int charIndex = ALPHABET.indexOf(upperCh);
+        int keyIndex = ALPHABET.indexOf(upperKey);
+
+        int resultIndex;
+        if (encrypt) {
+            resultIndex = (charIndex + keyIndex) % 26;
+        } else {
+            resultIndex = (charIndex - keyIndex + 26) % 26;
+        }
+
+        return ALPHABET.charAt(resultIndex);
+    }
+
+    /*
+     * Constructors
      */
 
     /**
@@ -47,8 +110,13 @@ public class VigenereCipher1L extends VigenereCipherSecondary {
     }
 
     /*
-     * Standard methods -------------------------------------------------------
+     * Standard methods
      */
+
+    @Override
+    public final void clear() {
+        this.createNewRep();
+    }
 
     @Override
     public final VigenereCipher newInstance() {
@@ -58,11 +126,6 @@ public class VigenereCipher1L extends VigenereCipherSecondary {
             throw new AssertionError(
                     "Cannot construct object of type " + this.getClass());
         }
-    }
-
-    @Override
-    public final void clear() {
-        this.createNewRep();
     }
 
     @Override
@@ -76,48 +139,32 @@ public class VigenereCipher1L extends VigenereCipherSecondary {
          * execution in that case.
          */
         VigenereCipher1L localSource = (VigenereCipher1L) source;
-        this.key = localSource.key;
+        this.rep = localSource.rep;
         localSource.createNewRep();
     }
 
     /*
-     * Kernel methods ---------------------------------------------------------
+     * Kernel methods
      */
 
     @Override
     public final Sequence<Character> encrypt(Sequence<Character> text) {
         assert text != null : "Violation of: text is not null";
-        assert this.key.length() > 0 : "Violation of: |this.key| > 0";
-        assert this.isKeyAllLetters(
-                this.key) : "Violation of: every character of this.key is a letter";
+        assert this.rep.length() > 0 : "Violation of: |this.key| > 0";
 
-        Sequence<Character> result = new Sequence1L<>();
+        Sequence<Character> result = text.newInstance();
+        int keyLength = this.rep.length();
         int keyIndex = 0;
 
         for (int i = 0; i < text.length(); i++) {
-            char c = text.entry(i);
-
-            if (Character.isLetter(c)) {
-                boolean isUpperCase = Character.isUpperCase(c);
-                char upperC = Character.toUpperCase(c);
-                char keyChar = this.key.entry(keyIndex % this.key.length());
-
-                // Calculate shift value (A=0, B=1, ..., Z=25)
-                int textValue = upperC - 'A';
-                int keyValue = keyChar - 'A';
-                int encryptedValue = (textValue + keyValue) % 26;
-                char encryptedChar = (char) ('A' + encryptedValue);
-
-                // Preserve original case
-                if (!isUpperCase) {
-                    encryptedChar = Character.toLowerCase(encryptedChar);
-                }
-
-                result.add(result.length(), encryptedChar);
+            char ch = text.entry(i);
+            if (isLetter(ch)) {
+                char keyChar = this.rep.entry(keyIndex % keyLength);
+                char encrypted = processChar(ch, keyChar, true);
+                result.add(result.length(), encrypted);
                 keyIndex++;
             } else {
-                // Non-letter characters are added unchanged
-                result.add(result.length(), c);
+                result.add(result.length(), ch);
             }
         }
 
@@ -127,37 +174,21 @@ public class VigenereCipher1L extends VigenereCipherSecondary {
     @Override
     public final Sequence<Character> decrypt(Sequence<Character> text) {
         assert text != null : "Violation of: text is not null";
-        assert this.key.length() > 0 : "Violation of: |this.key| > 0";
-        assert this.isKeyAllLetters(
-                this.key) : "Violation of: every character of this.key is a letter";
+        assert this.rep.length() > 0 : "Violation of: |this.key| > 0";
 
-        Sequence<Character> result = new Sequence1L<>();
+        Sequence<Character> result = text.newInstance();
+        int keyLength = this.rep.length();
         int keyIndex = 0;
 
         for (int i = 0; i < text.length(); i++) {
-            char c = text.entry(i);
-
-            if (Character.isLetter(c)) {
-                boolean isUpperCase = Character.isUpperCase(c);
-                char upperC = Character.toUpperCase(c);
-                char keyChar = this.key.entry(keyIndex % this.key.length());
-
-                // Calculate shift value (A=0, B=1, ..., Z=25)
-                int textValue = upperC - 'A';
-                int keyValue = keyChar - 'A';
-                int decryptedValue = (textValue - keyValue + 26) % 26;
-                char decryptedChar = (char) ('A' + decryptedValue);
-
-                // Preserve original case
-                if (!isUpperCase) {
-                    decryptedChar = Character.toLowerCase(decryptedChar);
-                }
-
-                result.add(result.length(), decryptedChar);
+            char ch = text.entry(i);
+            if (isLetter(ch)) {
+                char keyChar = this.rep.entry(keyIndex % keyLength);
+                char decrypted = processChar(ch, keyChar, false);
+                result.add(result.length(), decrypted);
                 keyIndex++;
             } else {
-                // Non-letter characters are added unchanged
-                result.add(result.length(), c);
+                result.add(result.length(), ch);
             }
         }
 
@@ -166,10 +197,8 @@ public class VigenereCipher1L extends VigenereCipherSecondary {
 
     @Override
     public final Sequence<Character> key() {
-        Sequence<Character> keyCopy = new Sequence1L<>();
-        for (int i = 0; i < this.key.length(); i++) {
-            keyCopy.add(keyCopy.length(), this.key.entry(i));
-        }
+        Sequence<Character> keyCopy = this.rep.newInstance();
+        keyCopy.append(this.rep);
         return keyCopy;
     }
 
@@ -177,40 +206,14 @@ public class VigenereCipher1L extends VigenereCipherSecondary {
     public final void setKey(Sequence<Character> key) {
         assert key != null : "Violation of: key is not null";
         assert key.length() > 0 : "Violation of: |key| > 0";
-        assert this.isKeyAllLetters(
-                key) : "Violation of: every character of key is a letter";
 
-        this.key.clear();
+        this.rep.clear();
         for (int i = 0; i < key.length(); i++) {
             char c = key.entry(i);
-            this.key.add(this.key.length(), Character.toUpperCase(c));
+            assert isLetter(c) : "Violation of: every character of key is a letter";
+            this.rep.add(this.rep.length(), toUpperCase(c));
         }
         key.clear();
-    }
-
-    /*
-     * Private helper methods -------------------------------------------------
-     */
-
-    /**
-     * Checks if all characters in the given sequence are letters.
-     *
-     * @param seq
-     *            the sequence to check
-     * @return true if all characters are letters, false otherwise
-     * @requires seq is not null
-     * @ensures isKeyAllLetters = (for all i: integer where 0 <= i < |seq|
-     *          (seq[i] is a letter))
-     */
-    private boolean isKeyAllLetters(Sequence<Character> seq) {
-        boolean allLetters = true;
-        for (int i = 0; i < seq.length(); i++) {
-            if (!Character.isLetter(seq.entry(i))) {
-                allLetters = false;
-                break;
-            }
-        }
-        return allLetters;
     }
 
 }

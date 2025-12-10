@@ -1,49 +1,94 @@
-package components.vigenerecipher;
-
-import javax.sound.midi.Sequence;
-
+import components.sequence.Sequence;
 import components.sequence.Sequence1L;
 
 /**
  * Layered implementations of secondary methods for {@code VigenereCipher}.
+ *
+ * <p>
+ * All secondary methods are implemented using only kernel methods and other
+ * secondary methods. Kernel methods remain abstract.
+ * </p>
  *
  * @author Vikranth Vegesina
  */
 public abstract class VigenereCipherSecondary implements VigenereCipher {
 
     /*
-     * Common methods (from Object) -------------------------------------------
+     * Private members
      */
 
-    @Override
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
+    /**
+     * Alphabet used for Vigenere cipher operations.
+     */
+    private static final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+    /*
+     * Private helper methods
+     */
+
+    /**
+     * Converts a character to uppercase if it is a letter.
+     *
+     * @param c
+     *            the character to convert
+     * @return the uppercase version if letter, otherwise the character itself
+     */
+    private static char toUpperCase(char c) {
+        if (c >= 'a' && c <= 'z') {
+            return (char) (c - 'a' + 'A');
         }
-        if (obj == null) {
-            return false;
-        }
-        if (!(obj instanceof VigenereCipher)) {
-            return false;
-        }
-        VigenereCipher cipher = (VigenereCipher) obj;
-        Sequence<Character> thisKey = this.key();
-        Sequence<Character> cipherKey = cipher.key();
-        return thisKey.equals(cipherKey);
+        return c;
     }
 
-    @Override
-    public int hashCode() {
-        return this.key().hashCode();
+    /**
+     * Checks if a character is a letter.
+     *
+     * @param c
+     *            the character to check
+     * @return true if the character is a letter, false otherwise
+     */
+    private static boolean isLetter(char c) {
+        return (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z');
     }
 
-    @Override
-    public String toString() {
-        return "VigenereCipher[key=" + this.keyToString() + "]";
+    /**
+     * Encrypts or decrypts a single character using the Vigenere cipher.
+     *
+     * @param ch
+     *            the character to process
+     * @param keyChar
+     *            the key character to use
+     * @param encrypt
+     *            true to encrypt, false to decrypt
+     * @return the processed character
+     */
+    private static char processChar(char ch, char keyChar, boolean encrypt) {
+        if (!isLetter(ch)) {
+            return ch;
+        }
+
+        char upperCh = toUpperCase(ch);
+        char upperKey = toUpperCase(keyChar);
+
+        int charIndex = ALPHABET.indexOf(upperCh);
+        int keyIndex = ALPHABET.indexOf(upperKey);
+
+        int resultIndex;
+        if (encrypt) {
+            resultIndex = (charIndex + keyIndex) % 26;
+        } else {
+            resultIndex = (charIndex - keyIndex + 26) % 26;
+        }
+
+        return ALPHABET.charAt(resultIndex);
     }
 
     /*
-     * Secondary methods ------------------------------------------------------
+     * Public members
+     */
+
+    /*
+     * Secondary methods - implemented using only kernel methods
      */
 
     @Override
@@ -53,32 +98,19 @@ public abstract class VigenereCipherSecondary implements VigenereCipher {
         assert key != null : "Violation of: key is not null";
         assert key.length() > 0 : "Violation of: |key| > 0";
 
-        // Create temporary copies to avoid modifying parameters
-        Sequence<Character> textCopy = text.newInstance();
-        textCopy.transferFrom(text);
-
-        Sequence<Character> keyCopy = key.newInstance();
-        for (int i = 0; i < key.length(); i++) {
-            keyCopy.add(keyCopy.length(), key.entry(i));
-        }
-
-        // Make key uppercase
-        this.makeUpperCase(keyCopy);
-
-        // Store current key
+        // Save the current key
         Sequence<Character> savedKey = this.key();
 
-        // Set temporary key
-        this.setKey(keyCopy);
+        // Temporarily set the new key
+        Sequence<Character> tempKey = key.newInstance();
+        tempKey.append(key);
+        this.setKey(tempKey);
 
-        // Encrypt
-        Sequence<Character> result = this.encrypt(textCopy);
+        // Encrypt with the temporary key
+        Sequence<Character> result = this.encrypt(text);
 
-        // Restore original key
+        // Restore the original key
         this.setKey(savedKey);
-
-        // Restore text
-        text.transferFrom(textCopy);
 
         return result;
     }
@@ -90,32 +122,19 @@ public abstract class VigenereCipherSecondary implements VigenereCipher {
         assert key != null : "Violation of: key is not null";
         assert key.length() > 0 : "Violation of: |key| > 0";
 
-        // Create temporary copies to avoid modifying parameters
-        Sequence<Character> textCopy = text.newInstance();
-        textCopy.transferFrom(text);
-
-        Sequence<Character> keyCopy = key.newInstance();
-        for (int i = 0; i < key.length(); i++) {
-            keyCopy.add(keyCopy.length(), key.entry(i));
-        }
-
-        // Make key uppercase
-        this.makeUpperCase(keyCopy);
-
-        // Store current key
+        // Save the current key
         Sequence<Character> savedKey = this.key();
 
-        // Set temporary key
-        this.setKey(keyCopy);
+        // Temporarily set the new key
+        Sequence<Character> tempKey = key.newInstance();
+        tempKey.append(key);
+        this.setKey(tempKey);
 
-        // Decrypt
-        Sequence<Character> result = this.decrypt(textCopy);
+        // Decrypt with the temporary key
+        Sequence<Character> result = this.decrypt(text);
 
-        // Restore original key
+        // Restore the original key
         this.setKey(savedKey);
-
-        // Restore text
-        text.transferFrom(textCopy);
 
         return result;
     }
@@ -127,8 +146,7 @@ public abstract class VigenereCipherSecondary implements VigenereCipher {
 
         if (valid) {
             for (int i = 0; i < currentKey.length(); i++) {
-                char c = currentKey.entry(i);
-                if (!Character.isLetter(c)) {
+                if (!isLetter(currentKey.entry(i))) {
                     valid = false;
                     break;
                 }
@@ -139,12 +157,12 @@ public abstract class VigenereCipherSecondary implements VigenereCipher {
     }
 
     @Override
-    public final void setKeyFromString(String keyStr) {
-        assert keyStr != null : "Violation of: keyStr is not null";
-        assert keyStr.length() > 0 : "Violation of: |keyStr| > 0";
+    public final void setKeyFromString(String s) {
+        assert s != null : "Violation of: s is not null";
+        assert s.length() > 0 : "Violation of: |s| > 0";
 
-        Sequence<Character> keySeq = this.stringToSequence(keyStr);
-        this.setKey(keySeq);
+        Sequence<Character> newKey = this.stringToSequence(s);
+        this.setKey(newKey);
     }
 
     @Override
@@ -173,27 +191,6 @@ public abstract class VigenereCipherSecondary implements VigenereCipher {
             sb.append(seq.entry(i));
         }
         return sb.toString();
-    }
-
-    /*
-     * Helper methods ---------------------------------------------------------
-     */
-
-    /**
-     * Converts all characters in the sequence to uppercase.
-     *
-     * @param seq
-     *            the sequence to convert
-     * @updates seq
-     * @ensures seq contains the uppercase version of #seq
-     */
-    private void makeUpperCase(Sequence<Character> seq) {
-        for (int i = 0; i < seq.length(); i++) {
-            char c = seq.entry(i);
-            if (Character.isLetter(c)) {
-                seq.replaceEntry(i, Character.toUpperCase(c));
-            }
-        }
     }
 
 }

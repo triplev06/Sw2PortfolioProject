@@ -1,7 +1,4 @@
-package components.vigenerecipher;
-
-import javax.sound.midi.Sequence;
-
+import components.sequence.Sequence;
 import components.standard.Standard;
 
 /**
@@ -13,16 +10,12 @@ import components.standard.Standard;
  * </p>
  *
  * @author Vikranth Vegesina
- *
- * @mathmodel type VigenereCipherKernel is modeled by (key: STRING of uppercase
- *            letters)
- *
- * @initially
- *
- *            <pre>
+ * @mathmodel type VigenereCipherKernel is modeled by (key: SEQUENCE of
+ *            uppercase letters)
+ * @initially <pre>
  * ensures
- *   this.key = empty string
- *            </pre>
+ *   this.key = empty_sequence
+ * </pre>
  */
 public interface VigenereCipherKernel extends Standard<VigenereCipher> {
 
@@ -32,8 +25,8 @@ public interface VigenereCipherKernel extends Standard<VigenereCipher> {
      * @param text
      *            the text to encrypt
      * @return the resulting ciphertext
-     * @requires text is not null and |this.key| > 0 and every character of
-     *           this.key is a letter
+     * @requires text /= null and |this.key| > 0 and every character of this.key
+     *           is a letter
      * @ensures encrypt = TEXT_ENCRYPTED_WITH_KEY(text, this.key)
      */
     Sequence<Character> encrypt(Sequence<Character> text);
@@ -44,14 +37,14 @@ public interface VigenereCipherKernel extends Standard<VigenereCipher> {
      * @param text
      *            the ciphertext to decrypt
      * @return the resulting plaintext
-     * @requires text is not null and |this.key| > 0 and every character of
-     *           this.key is a letter
+     * @requires text /= null and |this.key| > 0 and every character of this.key
+     *           is a letter
      * @ensures decrypt = TEXT_DECRYPTED_WITH_KEY(text, this.key)
      */
     Sequence<Character> decrypt(Sequence<Character> text);
 
     /**
-     * Returns the current key as a {@code Sequence<Character>}.
+     * Returns a copy of the current key.
      *
      * @return a copy of the stored key
      * @ensures key = this.key
@@ -65,7 +58,8 @@ public interface VigenereCipherKernel extends Standard<VigenereCipher> {
      *            the new key to use
      * @replaces this.key
      * @clears key
-     * @requires |key| > 0 and every character of key is a letter
+     * @requires key /= null and |key| > 0 and every character of key is a
+     *           letter
      * @ensures this.key = TO_UPPERCASE(#key)
      */
     void setKey(Sequence<Character> key);
