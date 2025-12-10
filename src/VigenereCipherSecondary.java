@@ -17,32 +17,9 @@ public abstract class VigenereCipherSecondary implements VigenereCipher {
      * Private members
      */
 
-    /**
-     * Alphabet used for Vigenere cipher operations.
-     */
-    private static final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    /**
-     * Fixes Magic Number checkstyle error for 26.
-     */
-    private static final int ALPHABET_SIZE = 26;
-
     /*
      * Private helper methods
      */
-
-    /**
-     * Converts a character to uppercase if it is a letter.
-     *
-     * @param c
-     *            the character to convert
-     * @return the uppercase version if letter, otherwise the character itself
-     */
-    private static char toUpperCase(char c) {
-        if (c >= 'a' && c <= 'z') {
-            return (char) (c - 'a' + 'A');
-        }
-        return c;
-    }
 
     /**
      * Checks if a character is a letter.
@@ -53,38 +30,6 @@ public abstract class VigenereCipherSecondary implements VigenereCipher {
      */
     private static boolean isLetter(char c) {
         return (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z');
-    }
-
-    /**
-     * Encrypts or decrypts a single character using the Vigenere cipher.
-     *
-     * @param ch
-     *            the character to process
-     * @param keyChar
-     *            the key character to use
-     * @param encrypt
-     *            true to encrypt, false to decrypt
-     * @return the processed character
-     */
-    private static char processChar(char ch, char keyChar, boolean encrypt) {
-        if (!isLetter(ch)) {
-            return ch;
-        }
-
-        char upperCh = toUpperCase(ch);
-        char upperKey = toUpperCase(keyChar);
-
-        int charIndex = ALPHABET.indexOf(upperCh);
-        int keyIndex = ALPHABET.indexOf(upperKey);
-
-        int resultIndex;
-        if (encrypt) {
-            resultIndex = (charIndex + keyIndex) % ALPHABET_SIZE;
-        } else {
-            resultIndex = (charIndex - keyIndex + ALPHABET_SIZE) % ALPHABET_SIZE;
-        }
-
-        return ALPHABET.charAt(resultIndex);
     }
 
     /*

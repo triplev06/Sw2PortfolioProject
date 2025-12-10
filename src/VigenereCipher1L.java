@@ -31,6 +31,11 @@ public class VigenereCipher1L extends VigenereCipherSecondary {
     private static final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     /**
+     * Fix Magic Number checkstyle error for 26.
+     */
+    private static final int ALPHABET_SIZE = 26;
+
+    /**
      * Creator of initial representation.
      */
     private void createNewRep() {
@@ -90,9 +95,9 @@ public class VigenereCipher1L extends VigenereCipherSecondary {
 
         int resultIndex;
         if (encrypt) {
-            resultIndex = (charIndex + keyIndex) % 26;
+            resultIndex = (charIndex + keyIndex) % ALPHABET_SIZE;
         } else {
-            resultIndex = (charIndex - keyIndex + 26) % 26;
+            resultIndex = (charIndex - keyIndex + ALPHABET_SIZE) % ALPHABET_SIZE;
         }
 
         return ALPHABET.charAt(resultIndex);
@@ -213,7 +218,8 @@ public class VigenereCipher1L extends VigenereCipherSecondary {
         this.rep.clear();
         for (int i = 0; i < key.length(); i++) {
             char c = key.entry(i);
-            assert isLetter(c) : "Violation of: every character of key is a letter";
+            assert isLetter(
+                    c) : "Violation of: every character of key is a letter";
             this.rep.add(this.rep.length(), toUpperCase(c));
         }
         key.clear();

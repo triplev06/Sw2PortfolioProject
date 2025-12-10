@@ -7,6 +7,16 @@ and this project adheres to [Calendar Versioning](https://calver.org/) of
 the following form: YYYY.0M.0D.
 
 ## [Unreleased]
+## [2025.12.10]
+
+### Added
+
+- Designed test suite for VigenereCipher1L and VigenereCipher component
+- Designed two different use cases for both VigenereCipher components
+
+### Updated
+
+- Changed design to include QOL changes to the VigenereCipher Hierarchy.
 
 ## [2025.11.20]
 

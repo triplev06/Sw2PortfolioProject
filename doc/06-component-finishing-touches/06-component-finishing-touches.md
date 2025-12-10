@@ -305,18 +305,33 @@ Take some time to fill them out honestly.
 > complete the portfolio project, how much better (or worse) do you think you
 > understand software development and why?
 
-<!-- TODO: discuss -->
+>>> I feel like I understand software development better (felt like opening pandoras box of stress)
+>>> as I learned so much about it in this one project series that it affected my
+>>> approach to problems we were given in the SW2 course. I can see a measurable
+>>> difference in my methods and organization of the problems we were given throughout
+>>> the coruse which I dont think I wouldve been able to do without this project.
 
 > Also, did the portfolio project surface any gaps in your own knowledge of
 > software development. If so, what are those gaps and how did you address them?
 
-<!-- TODO: discuss -->
+>>> Everything I ever though about in terms of Java has been flipped upside down.
+>>> Software Development is way different than I thought it would be as I spent endless
+>>> hours scrolling through youtube and other websites like stack overflow on figuring
+>>> out solutions to problems I never wouldve expected would come up. My compiler self
+>>> destructed somehow?
 
 > Finally, as a part of completing the portfolio project, to what extent has
 > your perspective of software development changed, if at all? In other words,
 > is software development something you still enjoy? If not, why not?
 
-<!-- TODO: discuss -->
+>>> Everything I ever though of in terms of Software Development has changed.
+>>> Prior to this class I would create software using python and it was MUCH easier
+>>> to do so using existing software. Now that I needed to create an API library from
+>>> scratch, I spent more hours on this one component library than I did on every
+>>> SW2 project we've done this semester combined. I did not quite enjoy this process
+>>> as there was just sooo much bug testing I had to do and so many random errors
+>>> that came about from something I thought would be easy to do. And I originally wanted
+>>> to make a recorder api. Thank goodness I didnt try to make a harder library than this.
 
 > One of the challenges of completing the portfolio project is picking up a lot
 > of skills on your own. Some of these skills are, of course, software skills.
@@ -324,29 +339,44 @@ Take some time to fill them out honestly.
 > this process. Therefore, the first question is what skills did you pick up
 > through this process?
 
-<!-- TODO: discuss -->
+>>> I picked up on what to search for specifically. I had an endless amount of errors
+>>> (at one point vscode showed me 450ish errors at once). You needed to figure out which
+>>> errors were "real" and which came because of another error. As one problem can
+>>> explode into a multitude of errors. I also learned a lot about .class files which
+>>> I tried to abuse for this library and also learned to actually read the entire directory
+>>> as I forgot to even upload the components.jar file until THIS component was due.
+>>> Adding the .jar file alone made me waste 9 hours of me trying to figure out why
+>>> JUnit wasnt working and why the other OSU components werent working.
 
 > The follow-up question is: could you rephrase these skills you picked up
 > as bullet points that you could put on a resume? Try it below.
 
-<!-- TODO: discuss -->
+>>> - Technical: Java interfaces, inheritance, JUnit testing, design patterns, Checkstyle compliance
+>> - Process: debugging, refactoring, reading documentation, testing methodology
+> - Soft skills: problem-solving, persistence, time management
 
 > Next, how has working on this project affected your career trajectory?
 > In other words, do you now hate the topic you picked? Or, are you even more
 > interested in it? Both outcomes are valuable to your personal development.
 
-<!-- TODO: discuss -->
+>>> I DO NOT think ill want to work on software anytime soon. I much rather enjoyed
+>>> using existing libraries due to the time I spent creating this library. I disliked
+>>> how stupid I felt the entire journey here due to overlooking a lot of basic stuff.
 
 > Finally, consider the skills you've picked up and your current career
 > trajectory. What are some things you could do to continue on your
 > career trajectory? Also, who are some mentors you could contact to help
 > you stay on your path?
 
-<!-- TODO: discuss -->
+>>>I think I can right now continue to work on learning about AWS. I recently learned how
+>>> to use their tabling stuff and its something I need to know more of to prepare for my internship
+>>> with Nationwide starting mid January. In terms of mentors I can contact my cousin who
+>>> works at Amazon and is a technician for AWS (aligns directly with what I want to learn)
+>>> and another one can be my boss for this internship as he has helped me get started with learning
+>>> about it and provided a lot of great resources.
 
 ### Changelog
 
-<!-- TODO: update CHANGELOG then delete this comment -->
 
 At the end of every assignment, you should update the
 [CHANGELOG.md](../../CHANGELOG.md) file found in the root of the project folder.
@@ -382,7 +412,6 @@ request merge (or at least tag your commits). This is not required.
 
 ### Submission
 
-<!-- TODO: read the submission instructions then delete this comment -->
 
 Assuming that your project is in a GitHub repo somewhere and your changes are on
 a proof-of-concept branch, then what we'll want you to do is create a pull
@@ -434,6 +463,5 @@ If you'd like to give feedback for this assignment (or any assignment, really),
 make use of [this survey][survey]. Your feedback helps make assignments
 better for future students.
 
-<!-- TODO: follow the link to share your feedback then delete this comment -->
 
 [survey]: https://forms.gle/dumXHo6A4Enucdkq9
