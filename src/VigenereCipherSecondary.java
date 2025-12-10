@@ -17,28 +17,9 @@ public abstract class VigenereCipherSecondary implements VigenereCipher {
      * Private members
      */
 
-    /**
-     * Alphabet used for Vigenere cipher operations.
-     */
-    private static final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
     /*
      * Private helper methods
      */
-
-    /**
-     * Converts a character to uppercase if it is a letter.
-     *
-     * @param c
-     *            the character to convert
-     * @return the uppercase version if letter, otherwise the character itself
-     */
-    private static char toUpperCase(char c) {
-        if (c >= 'a' && c <= 'z') {
-            return (char) (c - 'a' + 'A');
-        }
-        return c;
-    }
 
     /**
      * Checks if a character is a letter.
@@ -49,38 +30,6 @@ public abstract class VigenereCipherSecondary implements VigenereCipher {
      */
     private static boolean isLetter(char c) {
         return (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z');
-    }
-
-    /**
-     * Encrypts or decrypts a single character using the Vigenere cipher.
-     *
-     * @param ch
-     *            the character to process
-     * @param keyChar
-     *            the key character to use
-     * @param encrypt
-     *            true to encrypt, false to decrypt
-     * @return the processed character
-     */
-    private static char processChar(char ch, char keyChar, boolean encrypt) {
-        if (!isLetter(ch)) {
-            return ch;
-        }
-
-        char upperCh = toUpperCase(ch);
-        char upperKey = toUpperCase(keyChar);
-
-        int charIndex = ALPHABET.indexOf(upperCh);
-        int keyIndex = ALPHABET.indexOf(upperKey);
-
-        int resultIndex;
-        if (encrypt) {
-            resultIndex = (charIndex + keyIndex) % 26;
-        } else {
-            resultIndex = (charIndex - keyIndex + 26) % 26;
-        }
-
-        return ALPHABET.charAt(resultIndex);
     }
 
     /*
@@ -101,16 +50,20 @@ public abstract class VigenereCipherSecondary implements VigenereCipher {
         // Save the current key
         Sequence<Character> savedKey = this.key();
 
-        // Temporarily set the new key
+        // Temporarily set the new key - manually copy to preserve key parameter
         Sequence<Character> tempKey = key.newInstance();
-        tempKey.append(key);
+        for (int i = 0; i < key.length(); i++) {
+            tempKey.add(tempKey.length(), key.entry(i));
+        }
         this.setKey(tempKey);
 
         // Encrypt with the temporary key
         Sequence<Character> result = this.encrypt(text);
 
-        // Restore the original key
-        this.setKey(savedKey);
+        // Restore the original key (only if there was one)
+        if (savedKey.length() > 0) {
+            this.setKey(savedKey);
+        }
 
         return result;
     }
@@ -125,16 +78,20 @@ public abstract class VigenereCipherSecondary implements VigenereCipher {
         // Save the current key
         Sequence<Character> savedKey = this.key();
 
-        // Temporarily set the new key
+        // Temporarily set the new key - manually copy to preserve key parameter
         Sequence<Character> tempKey = key.newInstance();
-        tempKey.append(key);
+        for (int i = 0; i < key.length(); i++) {
+            tempKey.add(tempKey.length(), key.entry(i));
+        }
         this.setKey(tempKey);
 
         // Decrypt with the temporary key
         Sequence<Character> result = this.decrypt(text);
 
-        // Restore the original key
-        this.setKey(savedKey);
+        // Restore the original key (only if there was one)
+        if (savedKey.length() > 0) {
+            this.setKey(savedKey);
+        }
 
         return result;
     }
