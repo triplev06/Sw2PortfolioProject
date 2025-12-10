@@ -21,6 +21,10 @@ public abstract class VigenereCipherSecondary implements VigenereCipher {
      * Alphabet used for Vigenere cipher operations.
      */
     private static final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    /**
+     * Fixes Magic Number checkstyle error for 26.
+     */
+    private static final int ALPHABET_SIZE = 26;
 
     /*
      * Private helper methods
@@ -75,9 +79,9 @@ public abstract class VigenereCipherSecondary implements VigenereCipher {
 
         int resultIndex;
         if (encrypt) {
-            resultIndex = (charIndex + keyIndex) % 26;
+            resultIndex = (charIndex + keyIndex) % ALPHABET_SIZE;
         } else {
-            resultIndex = (charIndex - keyIndex + 26) % 26;
+            resultIndex = (charIndex - keyIndex + ALPHABET_SIZE) % ALPHABET_SIZE;
         }
 
         return ALPHABET.charAt(resultIndex);
@@ -101,16 +105,20 @@ public abstract class VigenereCipherSecondary implements VigenereCipher {
         // Save the current key
         Sequence<Character> savedKey = this.key();
 
-        // Temporarily set the new key
+        // Temporarily set the new key - manually copy to preserve key parameter
         Sequence<Character> tempKey = key.newInstance();
-        tempKey.append(key);
+        for (int i = 0; i < key.length(); i++) {
+            tempKey.add(tempKey.length(), key.entry(i));
+        }
         this.setKey(tempKey);
 
         // Encrypt with the temporary key
         Sequence<Character> result = this.encrypt(text);
 
-        // Restore the original key
-        this.setKey(savedKey);
+        // Restore the original key (only if there was one)
+        if (savedKey.length() > 0) {
+            this.setKey(savedKey);
+        }
 
         return result;
     }
@@ -125,16 +133,20 @@ public abstract class VigenereCipherSecondary implements VigenereCipher {
         // Save the current key
         Sequence<Character> savedKey = this.key();
 
-        // Temporarily set the new key
+        // Temporarily set the new key - manually copy to preserve key parameter
         Sequence<Character> tempKey = key.newInstance();
-        tempKey.append(key);
+        for (int i = 0; i < key.length(); i++) {
+            tempKey.add(tempKey.length(), key.entry(i));
+        }
         this.setKey(tempKey);
 
         // Decrypt with the temporary key
         Sequence<Character> result = this.decrypt(text);
 
-        // Restore the original key
-        this.setKey(savedKey);
+        // Restore the original key (only if there was one)
+        if (savedKey.length() > 0) {
+            this.setKey(savedKey);
+        }
 
         return result;
     }

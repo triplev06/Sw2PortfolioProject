@@ -198,7 +198,10 @@ public class VigenereCipher1L extends VigenereCipherSecondary {
     @Override
     public final Sequence<Character> key() {
         Sequence<Character> keyCopy = this.rep.newInstance();
-        keyCopy.append(this.rep);
+        // Manually copy elements to avoid clearing this.rep
+        for (int i = 0; i < this.rep.length(); i++) {
+            keyCopy.add(keyCopy.length(), this.rep.entry(i));
+        }
         return keyCopy;
     }
 

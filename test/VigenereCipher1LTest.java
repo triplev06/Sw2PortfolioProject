@@ -208,7 +208,7 @@ public class VigenereCipher1LTest {
         Sequence<Character> plain = createSequence("HELLO");
         Sequence<Character> encrypted = cipher.encrypt(plain);
 
-        assertEquals("HFNLP", sequenceToString(encrypted));
+        assertEquals("HFLMO", sequenceToString(encrypted));
     }
 
     /*
@@ -394,7 +394,7 @@ public class VigenereCipher1LTest {
 
         Sequence<Character> encrypted = cipher.encryptWithKey(text, tempKey);
 
-        assertEquals("AYHSQ", sequenceToString(encrypted));
+        assertEquals("AIXAH", sequenceToString(encrypted));
         assertEquals("HELLO", sequenceToString(text)); // text unchanged
         assertEquals("TEMP", sequenceToString(tempKey)); // temp key unchanged
         assertEquals("ORIGINAL", sequenceToString(cipher.key())); // stored key unchanged
@@ -425,13 +425,13 @@ public class VigenereCipher1LTest {
         Sequence<Character> storedKey = createSequence("ORIGINAL");
         cipher.setKey(storedKey);
 
-        Sequence<Character> encrypted = createSequence("AYHSQ");
+        Sequence<Character> encrypted = createSequence("AIXAH");
         Sequence<Character> tempKey = createSequence("TEMP");
 
         Sequence<Character> decrypted = cipher.decryptWithKey(encrypted, tempKey);
 
         assertEquals("HELLO", sequenceToString(decrypted));
-        assertEquals("AYHSQ", sequenceToString(encrypted)); // encrypted unchanged
+        assertEquals("AIXAH", sequenceToString(encrypted)); // encrypted unchanged
         assertEquals("TEMP", sequenceToString(tempKey)); // temp key unchanged
         assertEquals("ORIGINAL", sequenceToString(cipher.key())); // stored key unchanged
     }
