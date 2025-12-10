@@ -7,6 +7,16 @@ and this project adheres to [Calendar Versioning](https://calver.org/) of
 the following form: YYYY.0M.0D.
 
 ## [Unreleased]
+## [2025.12.9]
+
+### Added
+
+- Nothing
+
+### Updated
+
+- Fixed Hierarchy issues from previous components submissions
+
 
 ## [2025.11.20]
 
