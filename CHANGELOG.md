@@ -17,6 +17,67 @@ the following form: YYYY.0M.0D.
 - Changed design to include concept designs and overall desires for the component
 
 ## [Unreleased]
+## [2025.12.9]
+
+### Added
+
+- Nothing
+
+### Updated
+
+- Fixed Hierarchy issues from previous components submissions
+
+
+## [2025.11.20]
+
+### Added
+
+- Designed kernel implemntations (VigenereCipher1L.java)
+
+### Updated
+
+- nothing for now
+
+## [2025.11.06]
+
+### Added
+
+- Designed abstract class for abstract component
+
+### Updated
+
+- Changed design to include secondary methods for the abstract component
+
+
+## [2025.10.23]
+
+### Added
+
+- Designed kernel and enhanced interfaces for VigenereCipher component
+
+### Updated
+
+- Changed design to include a kernel interface with its methods and a standard
+
+
+## [2025].[10].[08]
+
+### Added
+
+- Designed a proof of concept for vigener cipher component
+
+### Updated
+
+- VigenereCipher.java file
+
+## [2025.09.19]
+
+### Added
+
+- Designed a encryption component
+- Designed a camera component
+- Designed a card shuffler/dealer component
+
 
 ## [2024.12.30]
 

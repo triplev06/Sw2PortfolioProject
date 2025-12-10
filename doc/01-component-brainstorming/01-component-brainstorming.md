@@ -1,12 +1,9 @@
 # Portfolio Part 1: Component Brainstorming
 
-- **Name**: <!-- TODO: fill with first and last name (e.g., Brutus Buckeye) then delete this comment -->
-- **Dot Number**: <!-- TODO: fill with OSU dot number (e.g., buckeye.17) then delete this comment -->
-- **Due Date**: <!-- TODO: fill with due date and time (e.g., 10/17 @ 3:10 PM EST) then delete this comment -->
-
+- **Name**: Vikranth Vegesina
+- **Dot Number**: vegesina.2
+- **Due Date**: September 19th, 2025 @ 1:50 pm
 ## Assignment Overview
-
-<!-- TODO: read the assignment overview then delete this comment -->
 
 The overall goal of the portfolio project is to have you design and implement
 your own OSU component. There are no limits to what you choose to design and
@@ -29,7 +26,6 @@ implement.
 
 ## Assignment Checklist
 
-<!-- TODO: browse the checklist then delete this comment -->
 
 To be sure you have completed everything on this assignment, we have littered
 this document with TODO comments. You can browse all of them in VSCode by
@@ -52,8 +48,6 @@ to the tree diagram (you may remove this one as well):
 
 ## Assignment Learning Objectives
 
-<!-- TODO: read the assignment learning objectives then delete this comment -->
-
 Without learning objectives, there really is no clear reason why a particular
 assessment or activity exists. Therefore, to be completely transparent, here is
 what we're hoping you will learn through this particular aspect of the portfolio
@@ -67,7 +61,6 @@ project. Specifically, students should be able to:
 
 ## Assignment Rubric: 10 Points
 
-<!-- TODO: read the assignment rubric then delete this comment -->
 
 Again, to be completely transparent, most of the portfolio project, except the
 final submission, is designed as a formative assessment. Formative assessments
@@ -105,16 +98,16 @@ Below is further rationale/explanation for the rubric items above:
 > hobbies. These will help you clarify your values before you start
 > brainstorming. Plus it helps us get to know you better! Feel free to share
 > images in this section.
+>>> My career goals for after college is to work in some sort of career where I can learn and utilize AI in more advanced concepts. Currently I have explored using various AI Api's such as metas oLlama llm's and ChatGPT's GPT 3o API for various projects. I love doing projects such as utilizing computer vision in python, creating AI chatbots with gpt 3o and more. I also enjoy playing cards a lot such as poker and uno. In terms of hobbies I like to draw and play games (a recent game being baldurs gate 3). I am a really big fan of things that involve using my creativity which is why I love games like baldurs gate 3 (easily top 3 best games I've played). I also set a personal goal of mine to 100% all of the souls games made by FromSoftware (40% there). Outside of that I like to bounce around with interests. Currently my interests lie in AI-Agents as that is something I recently found out about and Agentic AI which is something companies have told me they are transitioning their focus to. I mainly am free spirited and drift across various interests. Here are some images from the various games ive played this year as well as some art I made:
+<img title="baldurs gate 3" alt="baldurs gate 3" src="C:\Users\Veges\OneDrive\Documents\GitHub\Sw2PortfolioProject\doc\01-component-brainstorming\BG3Character.png">
+<img title="Clair Obscur Expedition 33" alt="COE33" src="C:\Users\Veges\OneDrive\Documents\GitHub\Sw2PortfolioProject\doc\01-component-brainstorming\COE33.png">
+<img title="DarkSouls3" alt="DS3" src="C:\Users\Veges\OneDrive\Documents\GitHub\Sw2PortfolioProject\doc\01-component-brainstorming\Midir.png">
+<img title="The Dark Knight" alt="Batman" src="C:\Users\Veges\OneDrive\Documents\GitHub\Sw2PortfolioProject\doc\01-component-brainstorming\Batman.jpg">
+<img title="Batman Who Laughs" alt="Batman Who Laughs" src="C:\Users\Veges\OneDrive\Documents\GitHub\Sw2PortfolioProject\doc\01-component-brainstorming\BatmanWhoLaughs.jpg">
 
-<!-- TODO: briefly talk about your interests then delete this comment.
-Also, protip: you can preview what your response looks like by hitting
-the magnifying glass icon in the upper-right corner or pressing CTRL+K and
-then V. This kind of button combination is called a chord, for whatever
-reason -->
 
 ## Assignment
 
-<!-- TODO: read the assignment section then delete this comment -->
 
 As previously stated, you are tasked with brainstorming 3 possible components.
 To aid you in this process, we have provided [some example components][example-components]
@@ -122,7 +115,6 @@ that may help you in your brainstorming. All of these components were made at
 some point by one of your peers, so you should feel confident that you can
 accomplish any of them.
 
-<!-- TODO: browse the list of possible projects then delete this comment -->
 
 There is no requirement that you use any of the components listed above.
 If you want to model something else, go for it! Very common early object
@@ -132,7 +124,6 @@ you're just brainstorming right now. You do not have to commit to anything.
 
 ### Example Component
 
-<!-- TODO: review this example component then delete this comment -->
 
 To help you brainstorm a few components, we've provided an example below of a
 component you already know well: NaturalNumber. We highly recommend that you
@@ -200,68 +191,88 @@ will likely refine your design to make your implementation easier to use.
 
 > Please use this section to share your designs.
 
-- Component Design #1: <!-- TODO: give component a name then delete this comment -->
+- Component Design #1: VigenereCipher
   - **Description**:
-    - <!-- TODO: describe your component then delete this comment -->
+    - The Vigenere Cipher is a component that handles encryption and decryption of key data such as usernames and passwords using a modification of the caesar cipher shuffle (simply creates a).
   - **Kernel Methods**:
-    - <!-- TODO: list kernel methods then delete this comment -->
+    - `String encrypt(String text)`: `encrypts text` using the `key`
+    - `String decrypt(String text)`: `decrypts text` using `key`
+    - `String key()`: `returns` the `key for the cipher`
+    - `void setKey(String key);` -sets the `encryption key for cipher`
   - **Secondary Methods**:
-    - <!-- TODO: list secondary methods then delete this comment -->
+    - `String encryptWithKey(String text, String key)`: `encrypts` with key `without needing to call setKey`
+    - `String decryptWithKey(String text, String key)`: `decrypts` with key `without needing to call setKey`
+    - `boolean isValidKey()`: checks if `key` is `valid (only letters)`
   - **Additional Considerations** (*note*: "I don't know" is an acceptable
     answer for each of the following questions):
     - Would this component be mutable? Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - yes because the state of the key can be changed after construction
     - Would this component rely on any internal classes (e.g., `Map.Pair`)?
       Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - I dont know
     - Would this component need any enums or constants (e.g.,
       `Program.Instruction`)? Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - yes as the cipher will shuffle through a constant array of characters to switch it to.
     - Can you implement your secondary methods using your kernel methods?
       Answer, explain, and give at least one example:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - Yes as in the case of encryptWithkey as it performs the duty of encrypt but does not need to have a key set and can use a different string not used for setKey(S key)
 
-- Component Design #2: <!-- TODO: give component a name then delete this comment -->
+- Component Design #2: MineSweeper
   - **Description**:
-    - <!-- TODO: describe your component then delete this comment -->
+    - models the original minesweeper game as an abstract type in which the board is a grid where each cell may have a mine and every cell also has a state (hidden, revealed, flag) and when revealed how many empty cells there are where there is no connecting mine.
   - **Kernel Methods**:
-    - <!-- TODO: list kernel methods then delete this comment -->
+    - `void newGame(int r, int c, int m)`: creates a new game with x rows, y cols, and m mines.
+    - `boolean reveal(int r, int c)` : reveals the cell at (r,c)
+    - `void toggleFlag(int r, int c)` : creates a marker on the cell to indicate it may be a bomb. (user creates it)
+    - `char state(int r, int c)` : the current state of the cell at (r,c)
+    - `int nearbyMines(int r, int c)` : returns the number of mines nearby (3x3) from the cell.
   - **Secondary Methods**:
-    - <!-- TODO: list secondary methods then delete this comment -->
+    - `boolean isCleared()` :true if all cells that arent mines are revealed (you win)
+    - `boolean isBlownUp()` : true if a mine cell is revealed (you lose)
+    - `boolean isGameOver()` : checks if game is over (win or loss)
+    - `int minesRemaining()` : returns number of mines left not flagged
+    - `int flagsPlaced()` : counts how many flags have been placed
+    - `String display()` : displays the board on text.
   - **Additional Considerations** (*note*: "I don't know" is an acceptable
     answer for each of the following questions):
     - Would this component be mutable? Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - Yes as users can place flags on the cell which changes its data.
     - Would this component rely on any internal classes (e.g., `Map.Pair`)?
       Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - Yes I could use sequences.
     - Would this component need any enums or constants (e.g.,
       `Program.Instruction`)? Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - I dont know
     - Can you implement your secondary methods using your kernel methods?
       Answer, explain, and give at least one example:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - yes as you can also do the display() method as its just displaying on a grid what cells you've discovered.
 
-- Component Design #3: <!-- TODO: give component a name then delete this comment -->
+- Component Design #3: deckOfCards
   - **Description**:
-    - <!-- TODO: describe your component then delete this comment -->
+    - a deck of cards you can use to deal a hand of n cards using sequences (no dupes).
   - **Kernel Methods**:
-    - <!-- TODO: list kernel methods then delete this comment -->
+    - `void shuffle()` : `shuffles` the `const cards`
+    - `Card draw()`: `draws 1 card`
+    - `void reset()`: `resets` deck to `full deck`
+
   - **Secondary Methods**:
-    - <!-- TODO: list secondary methods then delete this comment -->
+    - `boolean isEmpty()`: checks if deck `is empty (returns true if empty)`
+    - `int size()`: `returns cards remaining in deck`
+    - `Sequence<Card> dealHand(int n)`: `deals cards` from hand up to `n `times
+
   - **Additional Considerations** (*note*: "I don't know" is an acceptable
     answer for each of the following questions):
     - Would this component be mutable? Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - Yes as the consts get restored after use
     - Would this component rely on any internal classes (e.g., `Map.Pair`)?
       Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - It uses sequences to ensure there are no duplicates
     - Would this component need any enums or constants (e.g.,
       `Program.Instruction`)? Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - yes it would use constants for the suits and card
     - Can you implement your secondary methods using your kernel methods?
       Answer, explain, and give at least one example:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - yes and no as you can deal cards the same but cannot restore the deck once empty using the secondary methods.
 
 ## Post-Assignment
 
@@ -270,7 +281,6 @@ completed the assignment.
 
 ### Changelog
 
-<!-- TODO: create CHANGELOG then delete this comment -->
 
 At the end of every assignment, you should update the
 [CHANGELOG.md](../../CHANGELOG.md) file found in the root of the project folder.
@@ -288,16 +298,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Calendar Versioning](https://calver.org/) of
 the following form: YYYY.0M.0D.
 
-## YYYY.MM.DD
+## 2025.09.19
 
 ### Added
 
-- Designed a <!-- insert name of component 1 here --> component
-- Designed a <!-- insert name of component 2 here --> component
-- Designed a <!-- insert name of component 3 here --> component
+- Designed a encryption component
+- Designed a camera component
+- Designed a card shuffler/dealer component
 ```
 
-Here `YYYY.MM.DD` would be the date of your submission, such as 2024.04.21.
+Here `2025.09.19` would be the date of your submission, such as 2024.04.21.
 
 You may notice that things are nicely linked in the root CHANGELOG. If you'd
 like to accomplish that, you will need to make GitHub releases after each pull
@@ -309,7 +319,6 @@ of development.
 
 ### Submission
 
-<!-- TODO: read the submission instructions then delete this comment -->
 
 If you have completed the assignment using this template, we recommend that
 you convert it to a PDF before submission. If you're not sure how, check out
@@ -319,7 +328,6 @@ all your work is there before submitting. For future assignments, you will
 just be submitting a link to a pull request. This will be the only time
 you have to submit any PDFs.
 
-<!-- TODO: upload a PDF of this document and the CHANGELOG to Carmen then delete this comment -->
 
 ### Peer Review
 

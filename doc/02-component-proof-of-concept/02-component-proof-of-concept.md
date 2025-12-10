@@ -2,10 +2,9 @@
 
 - **Name**: Vikranth Vegesina
 - **Dot Number**: vegesina.2
-- **Due Date**: 10/9/2025 @ 1:50pm
+- **Due Date**: 10/9/2025 @ 1:50 pm
 
 ## Assignment Overview
-
 
 Previously, you brainstormed three ideas, and hopefully you got some feedback as
 well. However, it's impossible to know how reasonable your design actually is
@@ -29,7 +28,6 @@ the more work you can put in now, the better.
 
 ## Assignment Checklist
 
-
 To be sure you have completed everything on this assignment, we have littered
 this document with TODO comments. You can browse all of them in VSCode by
 opening the TODOs window from the sidebar. The icon looks like a tree and will
@@ -51,7 +49,6 @@ to the tree diagram (you may remove this one as well):
 
 ## Assignment Learning Objectives
 
-
 Without learning objectives, there really is no clear reason why a particular
 assessment or activity exists. Therefore, to be completely transparent, here is
 what we're hoping you will learn through this particular aspect of the portfolio
@@ -64,7 +61,6 @@ project. Specifically, students should be able to:
 3. Assemble a minimal working implementation of one of their designs
 
 ## Assignment Rubric: 10 Points
-
 
 Again, to be completely transparent, most of the portfolio project, except the
 final submission, is designed as a formative assessment. Formative assessments
@@ -109,10 +105,11 @@ Below is further rationale/explanation for the rubric items above:
 > the other. Alternatively, if you hate all of your old designs, use this space
 > to create a new design. In you do end up picking one at random, you should
 > disclose that here as well.
->>> I decided to design an interface where I can easily create new ciphers and edit existing ones
->>>. This helps keep it modular and allows for ease of use. Since everything is just
->>> functions with minimal user inputs required, it makes it simple and easy to use.
-
+>>>I plan on going forward with my design on the vigenere cipher as that seems to be the most
+>>> interesting for me. I felt that doing a card shuffler or something is too simple and
+>>> im not certain if I actually have the time to implemenet minesweeper game so I think
+>>> the cipher will be fun and doable in my time constraint now that ive had a couple
+>>> weeks to think about it.
 > Once you've argued your choice of design, make a branch in your new repo called
 > something like `proof-of-concept`. There are many ways to do this, but my
 > preference is to use GitHub Desktop. From there, you can click the `Branch`
