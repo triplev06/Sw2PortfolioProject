@@ -6,17 +6,27 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Calendar Versioning](https://calver.org/) of
 the following form: YYYY.0M.0D.
 
-## [Unreleased]
-## [2025.12.10]
+## 2025.12.09
 
 ### Added
 
-- Designed test suite for VigenereCipher1L and VigenereCipher component
-- Designed two different use cases for both VigenereCipher components
+- Designed a proof of concept for proof of concept component
 
 ### Updated
 
-- Changed design to include QOL changes to the VigenereCipher Hierarchy.
+- Changed design to include concept designs and overall desires for the component
+
+## [Unreleased]
+## [2025.12.9]
+
+### Added
+
+- Nothing
+
+### Updated
+
+- Fixed Hierarchy issues from previous components submissions
+
 
 ## [2025.11.20]
 

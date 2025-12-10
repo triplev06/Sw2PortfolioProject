@@ -110,6 +110,8 @@ Below is further rationale/explanation for the rubric items above:
 >>> im not certain if I actually have the time to implemenet minesweeper game so I think
 >>> the cipher will be fun and doable in my time constraint now that ive had a couple
 >>> weeks to think about it.
+
+
 > Once you've argued your choice of design, make a branch in your new repo called
 > something like `proof-of-concept`. There are many ways to do this, but my
 > preference is to use GitHub Desktop. From there, you can click the `Branch`
@@ -179,7 +181,6 @@ request merge (or at least tag your commits). This is not required.
 
 ### Submission
 
-<!-- TODO: read the submission instructions then delete this comment -->
 
 Assuming that your project is in a GitHub repo somewhere and your changes are on
 a proof-of-concept branch, then what we'll want you to do is create a pull
@@ -202,7 +203,6 @@ to look over your changes. Otherwise, you defer needed changes to later pull
 requests, which could sacrifice the overall quality of your work or result in
 major rework.
 
-<!-- TODO: paste the URL to Carmen then delete this comment -->
 
 ### Peer Review
 
@@ -233,7 +233,6 @@ If you'd like to give feedback for this assignment (or any assignment, really),
 make use of [this survey][survey]. Your feedback helps make assignments
 better for future students.
 
-<!-- TODO: follow the link to share your feedback then delete this comment -->
 
 [pottery-fails]: https://www.youtube.com/shorts/Kqb9l113F_0?feature=share
 [survey]: https://forms.gle/dumXHo6A4Enucdkq9
